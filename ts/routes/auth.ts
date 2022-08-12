@@ -82,13 +82,13 @@ route.post('/login', upload.none(), async (req, res) => {
           .cookie('token', token, {
             httpOnly: true,
             sameSite: 'none',
-            secure: true,
+            secure: false,
             path: '/'
           })
           .cookie('refreshToken', refreshToken, {
             httpOnly: true,
             sameSite: 'none',
-            secure: true,
+            secure: false,
             path: '/'
           })
           .send({ admin })

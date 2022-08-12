@@ -75,13 +75,13 @@ route.post('/login', upload.none(), (req, res) => __awaiter(void 0, void 0, void
                     .cookie('token', token, {
                     httpOnly: true,
                     sameSite: 'none',
-                    secure: true,
+                    secure: false,
                     path: '/'
                 })
                     .cookie('refreshToken', refreshToken, {
                     httpOnly: true,
                     sameSite: 'none',
-                    secure: true,
+                    secure: false,
                     path: '/'
                 })
                     .send({ admin });
