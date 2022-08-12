@@ -1,0 +1,12 @@
+{
+    "type": "service_account",
+    "project_id": "ronjon-clothes-shop-dev",
+    "private_key_id": "d76fee92593b2ed6493625821cf780d509ecb7f2",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCbHhf/6SVe4lna\nMmm5mdEqKxmBrtg5NNwNVLDjbfhOLI4/M48FTm54EN4KsTWG1HYRhkctZtp6QyHC\n0QZ1C89Vj9YBMaMtAOX8Dh6nBRAg8Jv17KEa16ivXTMzH5NtX8ZOcAaxVrHkYwxR\nPYylKJfF9fEOWapXjSRwwzInO4mQ99Fi8fPyDTYl5Oi+PPu2cJCQSnGM+qWEp65D\n/6QhMgM2BVxxhkfhd+kUeKCl14L3Rol6nARXKkrpkaN0wTb9wnTbHH/P0gWdyJZ9\nAdu/mmvtL0f+IDzERxso4wQoiYmQqTG+WdsuT19T15GoudqnMpRy8BjscpTXblCV\nVl5kZrsLAgMBAAECggEAGB2A7wDYwHxBf9H1QdePVGudlt2529rt7bH29hnzT86k\nJrXl9us58rdHQzOdoLfdyzJW/9CiXVOb0g/GXeKszx6CJMQKHEWsJkLZB8TvvE9B\nJTsufgp9Emuo5A/KpGcOthm7JfgrxoKSOFHF+ynpE+unwuq0YtFx6DNQfsJGIXVH\nmj8nxUYKvwpSnxsTEGqTXHZo9uFwmmEV9hrxm6Qg3bhd1vlLYIr9P02dLGTscMgR\ngVZpSCPerFOk4ExowDFh+5hoqG7CMaVqKXQ1CvKh6BSqQIdrNISrpYI2JS8e3w54\nnOmuYpupS68KocKFIn3wzL/FmqXAv5Bb2qER0M6CsQKBgQDJCmfFA8cXe/F2tohX\nSaoRiIIdXt+35E5YSxTxUHbsXbWvDqa0OPifyiNgSPugYDl+J199BZCB1618exFv\nL6EgZnM9iyIQl7R9XJogl01cgfzblXJYixfQGal29aAZBZ+PSJN3tsdbd1jQTMpt\ndU6ptZQBa4Dmq0FQpo56TpkV1QKBgQDFhdCAh3JKbD+NVMy5tgSp1fA5+7E+oxIF\nEgDVUt+GoDL6ThL1fGrFo8bKwZyQQFY8wSO0kKvjoadq7yKL1uvBx3/+5JHw5JZJ\n92Pu1m6bZxQljqT8oXGfIF1BgE0wMxAkZLtvPD/n8A0pSx9HAvHawk21/NkSdYQI\nr2xnkGSdXwKBgAvPaq0uPaHpjBPXQUcvcqg5BrvG+QmKhfe14XMTsQjNsICqMazg\ns+pfK5jacL3JKVd55KgpjYWzL+PiLvIDMEoA+sAgzk1/PAEpUXycptTKZhpYOzFs\name1Ojlc0JznsanvL4qW2DtNVZBXEoU/oPFjU2CJ+jaS1PFx92jD+UZJAoGBALWT\ne8aLvN75f7qWl9SopMTTrJBA9gEUuz35/NYd5unFXteG6hrNkwG4usgtD5Xz7tLO\n4dndnIYXVuYQivtuSS/MC7fvutFt8VJxn2YxrWAic/zKkpTCfMbBY7kRDuQeLNqn\n1z48bqrym8a4DjqjVF27fOCtXYeAjC3Hxam2rSeVAoGBAJD5acs4ZGWGNxQB2iFD\n29r9S2b9dyULwnBMEZvwY0h6w7QPOzDYzYt7YTcEMjiACNWa/zmdyyyeCT/Ozufz\nNfEvcNUDPxzneMJOgSZwjLtFs/ZmBYQ/cAbSXZRQMI15dYMaA8JopOJgtGN/DYHw\nPlIEhs7U7vmIuBC9O/I5GJP0\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-pi3el@ronjon-clothes-shop-dev.iam.gserviceaccount.com",
+    "client_id": "113608791873527950694",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-pi3el%40ronjon-clothes-shop-dev.iam.gserviceaccount.com"
+}
