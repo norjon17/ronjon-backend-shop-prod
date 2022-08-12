@@ -71,20 +71,7 @@ route.post('/login', upload.none(), (req, res) => __awaiter(void 0, void 0, void
                 const id = admin.id;
                 const token = (0, cookieJWT_1.generateAccessToken)(id);
                 const refreshToken = jsonwebtoken_1.default.sign({ id }, process.env.REFRESH_TOKEN_SECRET);
-                res
-                    .cookie('token', token, {
-                    httpOnly: true,
-                    sameSite: 'none',
-                    secure: false,
-                    path: '/'
-                })
-                    .cookie('refreshToken', refreshToken, {
-                    httpOnly: true,
-                    sameSite: 'none',
-                    secure: false,
-                    path: '/'
-                })
-                    .send({ admin });
+                res.cookie('token', token).cookie('refreshToken', refreshToken).send({ admin });
             }
             else {
                 res.status(403).json({ message: 'Wrong email or password.' });
