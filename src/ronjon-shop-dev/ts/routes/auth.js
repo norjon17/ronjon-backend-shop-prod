@@ -74,12 +74,12 @@ route.post('/login', upload.none(), (req, res) => __awaiter(void 0, void 0, void
                 res
                     .cookie('token', token, {
                     httpOnly: true,
-                    sameSite: 'strict',
+                    sameSite: 'none',
                     path: '/'
                 })
                     .cookie('refreshToken', refreshToken, {
                     httpOnly: true,
-                    sameSite: 'strict',
+                    sameSite: 'none',
                     path: '/'
                 })
                     .send({ admin });
