@@ -41,9 +41,9 @@ mongoose
 // ROUTES
 app.use('/api/shop', shopItemRoute)
 app.use('/api/auth', authRoute)
-app.use((req, res) => {
-  res.sendStatus(403)
-})
+// app.use((req, res) => {
+//   res.sendStatus(403)
+// })
 
 const PORT = process.env.PORT || 8001
 // const HOST = process.env.HOST || 'localhost'
