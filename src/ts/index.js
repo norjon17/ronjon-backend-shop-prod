@@ -22,7 +22,7 @@ app.use((0, cors_1.default)({
     credentials: true,
     origin: process.env.ORIGIN,
     methods: ['GET, POST, PUT, DELETE, OPTIONS'],
-    allowedHeaders: ['Content-Type']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
 }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '/src/public/images')));
 app.use((0, cookie_parser_1.default)());

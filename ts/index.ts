@@ -21,8 +21,7 @@ app.use(
     credentials: true,
     origin: process.env.ORIGIN,
     methods: ['GET, POST, PUT, DELETE, OPTIONS'],
-    allowedHeaders: ['Content-Type']
-    // allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
+    allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
   })
 )
 app.use(express.static(path.join(__dirname, '/src/public/images')))
