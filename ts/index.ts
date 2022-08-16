@@ -27,14 +27,14 @@ app.use(
 app.use(express.static(path.join(__dirname, '/src/public/images')))
 // FOR READING COOKIES
 app.use(cookieParser())
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET as string,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: true, sameSite: 'none', secure: true, path: '/' }
-  })
-)
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET as string,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: { httpOnly: true, sameSite: 'none', secure: true, path: '/' }
+//   })
+// )
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: false }))
 

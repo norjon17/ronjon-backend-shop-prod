@@ -74,14 +74,14 @@ route.post('/login', upload.none(), (req, res) => __awaiter(void 0, void 0, void
                 res
                     .cookie('token', token, {
                     httpOnly: true,
-                    sameSite: 'strict',
+                    sameSite: 'none',
                     secure: true,
                     path: '/',
                     domain: process.env.ORIGIN
                 })
                     .cookie('refreshToken', refreshToken, {
                     httpOnly: true,
-                    sameSite: 'strict',
+                    sameSite: 'none',
                     secure: true,
                     path: '/',
                     domain: process.env.ORIGIN

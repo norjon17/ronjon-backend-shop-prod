@@ -13,7 +13,6 @@ const shopitems_1 = __importDefault(require("./routes/shopitems"));
 const auth_1 = __importDefault(require("./routes/auth"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const path_1 = __importDefault(require("path"));
-const express_session_1 = __importDefault(require("express-session"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use(express_1.default.json());
@@ -26,12 +25,6 @@ app.use((0, cors_1.default)({
 }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '/src/public/images')));
 app.use((0, cookie_parser_1.default)());
-app.use((0, express_session_1.default)({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: true, sameSite: 'none', secure: true, path: '/' }
-}));
 mongoose_1.default
     .connect(process.env.CONNECTION_URL, { useNewUrlParser: true })
     .then(() => {
