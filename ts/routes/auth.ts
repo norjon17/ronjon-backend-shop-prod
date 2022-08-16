@@ -78,23 +78,23 @@ route.post('/login', upload.none(), async (req, res) => {
         const token = generateAccessToken(id)
         const refreshToken = jwt.sign({ id }, process.env.REFRESH_TOKEN_SECRET as string)
         // SETUP COOKIES AND SEND
-        // res
-        //   .cookie('token', token, {
-        //     httpOnly: true,
-        //     sameSite: 'strict',
-        //     secure: false,
-        //     path: '/',
-        //     domain: process.env.ORIGIN as string
-        //   })
-        //   .cookie('refreshToken', refreshToken, {
-        //     httpOnly: true,
-        //     sameSite: 'strict',
-        //     secure: false,
-        //     path: '/',
-        //     domain: process.env.ORIGIN as string
-        //   })
-        //   .send({ admin })
-        res.cookie('token', token).cookie('refreshToken', refreshToken).send({ admin })
+        res
+          .cookie('token', token, {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/',
+            domain: process.env.ORIGIN as string
+          })
+          .cookie('refreshToken', refreshToken, {
+            httpOnly: true,
+            sameSite: 'strict',
+            secure: false,
+            path: '/',
+            domain: process.env.ORIGIN as string
+          })
+          .send({ admin })
+        // res.cookie('token', token).cookie('refreshToken', refreshToken).send({ admin })
         // res.send({ token: token, admin })
       } else {
         res.status(403).json({ message: 'Wrong email or password.' })
