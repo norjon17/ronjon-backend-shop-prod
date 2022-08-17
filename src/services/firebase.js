@@ -16,7 +16,6 @@ exports.uploadImage = void 0;
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
 const path_1 = __importDefault(require("path"));
 const logging_1 = __importDefault(require("../config/logging"));
-const values_1 = require("../constants/values");
 const firebase_dev_json_1 = __importDefault(require("../config/firebase-dev.json"));
 const BUCKET = 'ronjon-clothes-shop-dev.appspot.com';
 firebase_admin_1.default.initializeApp({
@@ -25,6 +24,7 @@ firebase_admin_1.default.initializeApp({
 });
 const bucket = firebase_admin_1.default.storage().bucket();
 const uploadImage = (req, res, next) => {
+    console.log(req.file);
     if (req.file) {
         const imgFile = req.file;
         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
@@ -36,7 +36,7 @@ const uploadImage = (req, res, next) => {
             }
         });
         stream.on('error', (e) => {
-            logging_1.default.error(values_1.NAMESPACE, e);
+            logging_1.default.error('FIREBASE UPLOAD', e);
         });
         stream.on('finish', () => __awaiter(void 0, void 0, void 0, function* () {
             yield file.makePublic();

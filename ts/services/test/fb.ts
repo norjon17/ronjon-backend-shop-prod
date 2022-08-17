@@ -1,15 +1,30 @@
 import { NextFunction, Request, Response } from 'express'
-import admin from 'firebase-admin'
+import admin, { ServiceAccount } from 'firebase-admin'
 import path from 'path'
 import logging from '../../config/logging'
 import { NAMESPACE } from '../../constants/values'
 // @ts-ignore
-import serviceAccount from '../../config/firebase-dev.json'
+// import serviceAccount from '../../config/firebase-dev.json'
 
 // const serviceAccount = credentials as admin.ServiceAccount
 
-export const BUCKET = 'ronjon-clothes-shop-dev.appspot.com'
+const serviceAccount = {
+  type: process.env.FIREBASE_TYPE,
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY!.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  client_id: process.env.FIREBASE_CLIENT_ID,
+  auth_uri: process.env.FIREBASE_AUTH_URI,
+  token_uri: process.env.FIREBASE_TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+  client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL
+} as ServiceAccount
+
+export const BUCKET = process.env.FIREBASE_BUCKET
 export const IMAGE_PATH = 'images/shop_items/'
+
+// console.log(serviceAccount)
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -42,7 +57,7 @@ export const uploadImage = async (req: Request, res: Response, next: NextFunctio
     })
 
     stream.on('error', (e) => {
-      logging.error(NAMESPACE, e)
+      logging.error('[FIREBASE UPLOAD]', e)
     })
 
     stream.on('finish', async () => {

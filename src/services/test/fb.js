@@ -16,12 +16,22 @@ exports.imageDelete = exports.uploadImage = exports.bucket = exports.IMAGE_PATH 
 const firebase_admin_1 = __importDefault(require("firebase-admin"));
 const path_1 = __importDefault(require("path"));
 const logging_1 = __importDefault(require("../../config/logging"));
-const values_1 = require("../../constants/values");
-const firebase_dev_json_1 = __importDefault(require("../../config/firebase-dev.json"));
-exports.BUCKET = 'ronjon-clothes-shop-dev.appspot.com';
+const serviceAccount = {
+    type: process.env.FIREBASE_TYPE,
+    project_id: process.env.FIREBASE_PROJECT_ID,
+    private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+    private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+    client_email: process.env.FIREBASE_CLIENT_EMAIL,
+    client_id: process.env.FIREBASE_CLIENT_ID,
+    auth_uri: process.env.FIREBASE_AUTH_URI,
+    token_uri: process.env.FIREBASE_TOKEN_URI,
+    auth_provider_x509_cert_url: process.env.FIREBASE_AUTH_PROVIDER_X509_CERT_URL,
+    client_x509_cert_url: process.env.FIREBASE_CLIENT_X509_CERT_URL
+};
+exports.BUCKET = process.env.FIREBASE_BUCKET;
 exports.IMAGE_PATH = 'images/shop_items/';
 firebase_admin_1.default.initializeApp({
-    credential: firebase_admin_1.default.credential.cert(firebase_dev_json_1.default),
+    credential: firebase_admin_1.default.credential.cert(serviceAccount),
     storageBucket: exports.BUCKET
 });
 exports.bucket = firebase_admin_1.default.storage().bucket();
@@ -44,7 +54,7 @@ const uploadImage = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
             }
         });
         stream.on('error', (e) => {
-            logging_1.default.error(values_1.NAMESPACE, e);
+            logging_1.default.error('[FIREBASE UPLOAD]', e);
         });
         stream.on('finish', () => __awaiter(void 0, void 0, void 0, function* () {
             yield file.makePublic();

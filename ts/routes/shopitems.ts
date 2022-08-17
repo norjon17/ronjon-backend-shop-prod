@@ -72,6 +72,7 @@ route.post('/create', verifyJWT, upload.single('imageFile'), uploadImage, async 
   const { firebaseUrl, imageName } = req.body
   // console.log(firebaseUrl)
   // console.log(imageName)
+  console.log('saving...')
   const doc = new ShopItemModel({
     ...data,
     image: firebaseUrl,
@@ -79,10 +80,10 @@ route.post('/create', verifyJWT, upload.single('imageFile'), uploadImage, async 
   })
   try {
     await doc.save()
-    logging.info(NAMESPACE, `Data has been inserted.`)
+    logging.info(`SHOP ITEMS CREATE`, `Data has been inserted.`)
     return res.status(200).json({ message: 'inserted' })
   } catch (e) {
-    logging.error(NAMESPACE, `${e}`)
+    logging.error(`SHOP ITEMS CREATE`, `${e}`)
     // return res.send({ message: 'Error encoutered', ...(e as object) })
     return res.status(400).send({ message: 'Error encoutered', ...(e as object) })
   }
@@ -111,7 +112,7 @@ route.put('/updateone/:id', verifyJWT, upload.single('imageFile'), uploadImage, 
 
     return res.status(200).json({ message: 'updated' })
   } catch (e) {
-    logging.error(NAMESPACE, `${e}`)
+    logging.error(`SHOP ITEMS UPDATE ONE`, `${e}`)
     return res.status(403).json({ message: 'Error encountered', ...(e as object) })
   }
 })

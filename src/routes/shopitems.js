@@ -44,14 +44,15 @@ route.get('/read/:id', cookieJWT_1.verifyJWT, (req, res) => __awaiter(void 0, vo
 route.post('/create', cookieJWT_1.verifyJWT, upload.single('imageFile'), fb_1.uploadImage, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
     const { firebaseUrl, imageName } = req.body;
+    console.log('saving...');
     const doc = new ShopItemModel_1.ShopItemModel(Object.assign(Object.assign({}, data), { image: firebaseUrl, imageName: imageName }));
     try {
         yield doc.save();
-        logging_1.default.info(values_1.NAMESPACE, `Data has been inserted.`);
+        logging_1.default.info(`SHOP ITEMS CREATE`, `Data has been inserted.`);
         return res.status(200).json({ message: 'inserted' });
     }
     catch (e) {
-        logging_1.default.error(values_1.NAMESPACE, `${e}`);
+        logging_1.default.error(`SHOP ITEMS CREATE`, `${e}`);
         return res.status(400).send(Object.assign({ message: 'Error encoutered' }, e));
     }
 }));
@@ -72,7 +73,7 @@ route.put('/updateone/:id', cookieJWT_1.verifyJWT, upload.single('imageFile'), f
         return res.status(200).json({ message: 'updated' });
     }
     catch (e) {
-        logging_1.default.error(values_1.NAMESPACE, `${e}`);
+        logging_1.default.error(`SHOP ITEMS UPDATE ONE`, `${e}`);
         return res.status(403).json(Object.assign({ message: 'Error encountered' }, e));
     }
 }));
