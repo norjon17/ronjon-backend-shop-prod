@@ -19,8 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(
   cors({
     credentials: true,
-    // origin: process.env.ORIGIN,
-    origin: '*',
+    origin: process.env.ORIGIN,
+    // origin: '*',
     methods: ['GET, POST, PUT, DELETE, OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
   })
