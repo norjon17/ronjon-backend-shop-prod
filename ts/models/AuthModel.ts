@@ -15,6 +15,7 @@ export interface AdminTypes {
   created_at?: string
   updated_at?: string
   token?: string
+  confirm_password?: string
 }
 
 const validateEmail = (email: string) => {

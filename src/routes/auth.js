@@ -38,25 +38,31 @@ route.get('/', cookieJWT_1.verifyJWT, (req, res) => __awaiter(void 0, void 0, vo
         return res.send(Object.assign({ message: 'denied' }, e));
     }
 }));
-route.post('/register', (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+route.post('/register', upload.none(), (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const oldAdmin = req.body;
+        const reqAdmin = req.body;
+        const firstValidate = new AuthModel_1.AuthModel(Object.assign({}, reqAdmin));
+        yield firstValidate.validate();
         const salt = yield bcrypt_1.default.genSalt(10);
-        const hashPassword = yield bcrypt_1.default.hash(oldAdmin.password, salt);
-        const newAdmin = Object.assign(Object.assign({}, oldAdmin), { password: hashPassword });
+        const hashPassword = yield bcrypt_1.default.hash(reqAdmin.password, salt);
+        const newAdmin = Object.assign(Object.assign({}, reqAdmin), { password: hashPassword });
         const createAdmin = new AuthModel_1.AuthModel(Object.assign({}, newAdmin));
-        yield createAdmin.save();
+        yield createAdmin.validate();
+        if (reqAdmin.password.length < 6) {
+            return res.status(400).send({ message: 'error encountered', errors: { password: { message: `The minimum password is 6 characters.` } } });
+        }
+        else if (reqAdmin.password !== reqAdmin.confirm_password) {
+            return res.status(400).send({ message: 'error encountered', errors: { password: { message: `Password don't match.` } } });
+        }
+        else {
+            yield createAdmin.save();
+            res.send({ message: 'created' });
+        }
         logging_1.default.info(values_1.NAMESPACE, `New admin created ${newAdmin.firstname} ${newAdmin.lastname} ${newAdmin.email}`);
-        next();
     }
     catch (e) {
         logging_1.default.error(values_1.NAMESPACE, JSON.stringify(e));
-        if (e.code === 11000) {
-            res.send({ message: 'error encountered', errors: { email: { message: 'This email is already used in this site.' } } });
-        }
-        else {
-            res.send(Object.assign({ message: 'error encountered' }, e));
-        }
+        res.status(400).send(Object.assign({ message: 'error encountered' }, e));
     }
 }));
 route.post('/login', upload.none(), (req, res) => __awaiter(void 0, void 0, void 0, function* () {

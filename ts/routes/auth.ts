@@ -1,4 +1,4 @@
-import express from 'express'
+import express, { NextFunction } from 'express'
 import logging from '../config/logging'
 import { NAMESPACE } from '../constants/values'
 import { AdminTypes, AuthModel } from '../models/AuthModel'
@@ -6,6 +6,7 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { generateAccessToken, verifyJWT } from '../middleware/cookieJWT'
 import multer from 'multer'
+import { passwordValidation } from '../middleware/adminValidation'
 
 const route = express()
 
@@ -30,29 +31,53 @@ route.get('/', verifyJWT, async (req, res) => {
 })
 
 // rEGISTER
-route.post('/register', async (req, res, next) => {
+route.post('/register', upload.none(), async (req, res, next) => {
   try {
-    const oldAdmin = req.body as AdminTypes
+    const reqAdmin = req.body as AdminTypes
+    const firstValidate = new AuthModel({ ...reqAdmin })
+    // validate some of the data
+    // passoword validation not working due to bcrypt
+    await firstValidate.validate()
+
+    // validate others
+    // new AuthModel({ ...reqAdmin })
+    // console.log(checkAdmin)
+    // if (reqAdmin.password !== reqAdmin.confirm_password) {
+    //   return res.status(400).send({ message: 'Confirmation password must be match.' })
+    // }
 
     // encrypt password
     const salt = await bcrypt.genSalt(10)
-    const hashPassword = await bcrypt.hash(oldAdmin.password, salt)
+    const hashPassword = await bcrypt.hash(reqAdmin.password, salt)
     // assign new admin
-    const newAdmin = { ...oldAdmin, password: hashPassword }
+    const newAdmin = { ...reqAdmin, password: hashPassword }
     // create new admin
     const createAdmin = new AuthModel({ ...newAdmin })
-    await createAdmin.save()
+    // validate some of the data
+    // passoword validation not working due to bcrypt
+    await createAdmin.validate()
+
+    if (reqAdmin.password.length < 6) {
+      return res.status(400).send({ message: 'error encountered', errors: { password: { message: `The minimum password is 6 characters.` } } })
+    } else if (reqAdmin.password !== reqAdmin.confirm_password) {
+      return res.status(400).send({ message: 'error encountered', errors: { password: { message: `Password don't match.` } } })
+    } else {
+      await createAdmin.save()
+      res.send({ message: 'created' })
+    }
+
+    // console.log(createAdmin)
 
     logging.info(NAMESPACE, `New admin created ${newAdmin.firstname} ${newAdmin.lastname} ${newAdmin.email}`)
-    // res.send({ message: 'created' })
-    next()
+    // next()
   } catch (e: any) {
     logging.error(NAMESPACE, JSON.stringify(e))
-    if (e.code === 11000) {
-      res.send({ message: 'error encountered', errors: { email: { message: 'This email is already used in this site.' } } })
-    } else {
-      res.send({ message: 'error encountered', ...(e as object) })
-    }
+    res.status(400).send({ message: 'error encountered', ...(e as object) })
+    // if (e.code === 11000) {
+    //   res.send({ message: 'error encountered', errors: { email: { message: 'This email is already used in this site.' } } })
+    // } else {
+    //   res.send({ message: 'error encountered', ...(e as object) })
+    // }
   }
 })
 
