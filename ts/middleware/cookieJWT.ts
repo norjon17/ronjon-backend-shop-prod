@@ -5,11 +5,9 @@ import { NAMESPACE } from '../constants/values'
 
 // AUTH
 export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
-  //@ts-ignore
-  const token = req.session.cookies.token as string
-  //@ts-ignore
-  const refreshToken = req.session.cookies.refreshToken as string
-  // console.log('token: ' + token)
+  const token = req.cookies.token as string
+  const refreshToken = req.cookies.refreshToken as string
+  // console.log(req.cookies)
   // console.log('refresh: ' + refreshToken)
   try {
     let tokenExpired = false

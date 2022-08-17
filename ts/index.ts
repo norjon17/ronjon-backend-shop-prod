@@ -8,7 +8,7 @@ import shopItemRoute from './routes/shopitems'
 import authRoute from './routes/auth'
 import cookieParser from 'cookie-parser'
 import path from 'path'
-import session from 'express-session'
+// import session from 'express-session'
 
 const app = express()
 dotenv.config()
@@ -20,6 +20,7 @@ app.use(
   cors({
     credentials: true,
     origin: process.env.ORIGIN,
+    // origin: '*',
     methods: ['GET, POST, PUT, DELETE, OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
   })

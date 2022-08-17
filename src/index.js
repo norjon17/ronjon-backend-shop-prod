@@ -35,6 +35,9 @@ mongoose_1.default
 });
 app.use('/api/shop', shopitems_1.default);
 app.use('/api/auth', auth_1.default);
+app.use((req, res) => {
+    res.sendStatus(403);
+});
 const PORT = process.env.PORT || 8001;
 app.listen(PORT, () => {
     logging_1.default.info(values_1.NAMESPACE, `Server is running on port http://localhost:${PORT}`);
