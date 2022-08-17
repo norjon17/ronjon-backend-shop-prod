@@ -110,12 +110,14 @@ route.delete('/logout', verifyJWT, (req, res) => {
   return res
     .cookie('refreshToken', null, {
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'none',
+      secure: true,
       path: '/'
     })
     .cookie('token', null, {
       httpOnly: true,
-      sameSite: 'strict',
+      sameSite: 'none',
+      secure: true,
       path: '/'
     })
     .send()
