@@ -59,6 +59,7 @@ route.post('/create', cookieJWT_1.verifyJWT, upload.single('imageFile'), fb_1.up
 route.put('/updateone/:id', cookieJWT_1.verifyJWT, upload.single('imageFile'), fb_1.uploadImage, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const _id = req.params.id;
     const data = req.body;
+    logging_1.default.info('UPDATE', JSON.stringify(data));
     const { firebaseUrl, imageName } = req.body;
     try {
         if (JSON.stringify(data) === JSON.stringify({})) {

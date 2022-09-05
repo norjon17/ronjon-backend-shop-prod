@@ -1,5 +1,5 @@
 /node_modules
-.env
-/.vscode
-.prettierrc
-mongo.txt
+# .env
+# /.vscode
+# .prettierrc
+# mydata.txt

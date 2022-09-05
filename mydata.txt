@@ -1,0 +1,22 @@
+useR: norjon
+pass: HzNV-Dk2RyP_z94
+
+mongodb+srv://norjon:HzNV-Dk2RyP_z94@cluster0.k8npa.mongodb.net/shop
+
+
+GITHUB
+https://github.com/norjon17/ronjon-shop-server-dev.git
+
+GIT
+
+echo "# ronjon-shop-server-backend" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/norjon17/ronjon-shop-server-backend.git
+git push -u origin main
+
+git remote add origin https://github.com/norjon17/ronjon-shop-server-backend.git
+git branch -M main
+git push -u origin main

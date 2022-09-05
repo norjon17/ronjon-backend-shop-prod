@@ -93,7 +93,7 @@ route.post('/create', verifyJWT, upload.single('imageFile'), uploadImage, async 
 route.put('/updateone/:id', verifyJWT, upload.single('imageFile'), uploadImage, async (req, res) => {
   const _id = req.params.id
   const data = req.body as ItemTypes
-  // logging.info(NAMESPACE, JSON.stringify(data))
+  logging.info('UPDATE', JSON.stringify(data))
   const { firebaseUrl, imageName } = req.body
   try {
     // validate if empty object since the validator sucks
