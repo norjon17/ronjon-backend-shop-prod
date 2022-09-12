@@ -93,7 +93,7 @@ route.post('/create', verifyJWT, upload.single('imageFile'), uploadImage, async 
 route.put('/updateone/:id', verifyJWT, upload.single('imageFile'), uploadImage, async (req, res) => {
   const _id = req.params.id
   const data = req.body as ItemTypes
-  logging.info('UPDATE', JSON.stringify(data))
+  // logging.info('shopitems UPDATE', JSON.stringify(data))
   const { firebaseUrl, imageName } = req.body
   try {
     // validate if empty object since the validator sucks
@@ -109,7 +109,7 @@ route.put('/updateone/:id', verifyJWT, upload.single('imageFile'), uploadImage, 
     !currentShopItem && res.status(403).json({ message: 'Something went wrong. Please try again' })
 
     await ShopItemModel.findByIdAndUpdate(_id, { ...data, image: firebaseUrl, imageName: imageName }, opts)
-
+    logging.info('shopitems', 'UPDATED')
     return res.status(200).json({ message: 'updated' })
   } catch (e) {
     logging.error(`SHOP ITEMS UPDATE ONE`, `${e}`)
