@@ -31,7 +31,7 @@ route.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         res.send(e);
     }
 }));
-route.get('/read/:id', cookieJWT_1.verifyJWT, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+route.get('/read/:id', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params.id;
     try {
         const data = yield ShopItemModel_1.ShopItemModel.findById(id);
