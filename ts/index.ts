@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.ORIGIN!, process.env.SHOP_ORIGIN!],
+    origin: [process.env.ORIGIN!, process.env.SHOP_ORIGIN!, process.env.MOBILE_ORIGIN!],
     // origin: '*',
     methods: ['GET, POST, PUT, DELETE, OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Origin']
