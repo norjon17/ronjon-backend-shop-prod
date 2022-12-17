@@ -46,3 +46,18 @@ git push heroku-dev master
 
 heroku prod
 git push heroku-prod master
+
+
+PUBLIC GIT
+
+echo "# ronjon-backend-shop-prod" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/norjon17/ronjon-backend-shop-prod.git
+git push -u origin main
+
+git remote add origin https://github.com/norjon17/ronjon-backend-shop-prod.git
+git branch -M main
+git push -u origin main
