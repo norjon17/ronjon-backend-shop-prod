@@ -8,7 +8,6 @@ import shopItemRoute from './routes/shopitems'
 import authRoute from './routes/auth'
 import cookieParser from 'cookie-parser'
 import path from 'path'
-// import session from 'express-session'
 
 const app = express()
 dotenv.config()
@@ -39,6 +38,7 @@ app.use(cookieParser())
 // app.use(bodyParser.json())
 // app.use(bodyParser.urlencoded({ extended: false }))
 
+mongoose.set('strictQuery', true)
 mongoose
   .connect(process.env.CONNECTION_URL as string, { useNewUrlParser: true } as ConnectOptions)
   .then(() => {

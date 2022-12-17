@@ -29,23 +29,12 @@ git branch -M main this is for GITHUB
 or 
 git branch -M master this is for HEROKU
 
-GIT HEROKU or HEROKU WEBSITE
-
-"GIT RENAMING this is for heroku"
-git remote rename heroku heroku-staging
 
 LIST OF BRANCHES
 git remote -v
 
 update version
 git commit -am ""
-
-heroku dev
-git push heroku-dev master
-
-
-heroku prod
-git push heroku-prod master
 
 
 PUBLIC GIT
@@ -61,3 +50,7 @@ git push -u origin main
 git remote add origin https://github.com/norjon17/ronjon-backend-shop-prod.git
 git branch -M main
 git push -u origin main
+
+cyclic nodejs server
+
+https://github.com/norjon17/starter-micro-api.git

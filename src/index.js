@@ -25,6 +25,7 @@ app.use((0, cors_1.default)({
 }));
 app.use(express_1.default.static(path_1.default.join(__dirname, '/src/public/images')));
 app.use((0, cookie_parser_1.default)());
+mongoose_1.default.set('strictQuery', true);
 mongoose_1.default
     .connect(process.env.CONNECTION_URL, { useNewUrlParser: true })
     .then(() => {
